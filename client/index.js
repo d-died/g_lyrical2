@@ -31,10 +31,10 @@ const Root = () => {
   return (
     <ApolloProvider client={client}>
       <Router location={ history.location } navigator={ history }>
-        <Routes>
-          {/* <Route path='/' element={ <App /> } /> */}
-          <Route path='/' element={ <SongList /> } />
-        </Routes>
+          <Routes>
+            {/* <Route path='/' element={ <App /> } /> */}
+            <Route path='/' element={ <SongList /> } />
+          </Routes>
       </Router>
     </ApolloProvider>
   );
