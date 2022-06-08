@@ -1,14 +1,32 @@
 import React from "react";
 import gql from 'graphql-tag';
-// BECAUSE QUERIES ARE NOT VALID JS(X) CODE
+// IMPORT FROM GRAPHQL-TAG BECAUSE QUERIES ARE NOT VALID JS(X) CODE
 import { graphql } from '@apollo/client/react/hoc';
-// this is the library that bonds apollo library and graphQL
+// this is the helper library that bonds apollo library and graphQL
 
 
 class SongList extends React.Component {
+
+    renderSongs() {
+
+        return this.props.data.songs.map(song => {
+            return ( 
+                <li key={ song.id } className="collection-item">
+                    { song.title }
+                </li>
+            )
+        })
+    };
+
     render() {
-        console.log(this.props)
-       return <div>Song List</div>
+
+        if(this.props.data.loading) { return <div>Loading...</div> };
+
+       return (
+        <ul className="collection">
+            { this.renderSongs() }
+        </ul>
+       )
     };
 }
 
@@ -16,6 +34,7 @@ class SongList extends React.Component {
 const query = gql`
     {
         songs {
+            id
             title
         }
     }
